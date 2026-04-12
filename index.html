@@ -1,154 +1,60 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Commercial Legal Response Studio</title>
-    <link rel="stylesheet" href="./styles.css" />
-  </head>
-  <body>
-    <main class="app-shell">
-      <section class="workspace" aria-label="Commercial Legal Response Studio">
-        <header class="topbar">
-          <div>
-            <p class="eyebrow">#legal-sales-coordination</p>
-            <h1>Commercial Legal Response Studio</h1>
-          </div>
-          <div class="status-pill" id="statusPill" aria-live="polite">
-            <span class="status-dot"></span>
-            Ready
-          </div>
-        </header>
+#LEGAL-SALES-COORDINATION
+Commercial Legal Response Studio
 
-        <div class="layout">
-          <section class="composer" aria-label="Question intake">
-            <div class="panel-heading">
-              <div>
-                <h2>Ask</h2>
-                <p>Paste the customer question or Slack ask. Add enough deal context for a clean response.</p>
-              </div>
-              <button class="icon-button" id="clearButton" type="button" aria-label="Clear form" title="Clear form">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M5 6h14M9 6V4h6v2m-8 0 1 14h8l1-14" />
-                </svg>
-              </button>
-            </div>
+Ready
+Ask
+Paste the customer question or Slack ask. Add enough deal context for a clean response.
 
-            <label class="field">
-              <span>Customer question</span>
-              <textarea id="questionInput" rows="9" placeholder="Example: Customer wants to confirm whether Codex is covered by OpenAI's BAA and whether Customer can request explicit language in the order form."></textarea>
-            </label>
+Customer question
+Customer
 
-            <div class="field-grid">
-              <label class="field">
-                <span>Customer</span>
-                <input id="customerInput" type="text" placeholder="e.g. Acme Health" />
-              </label>
-              <label class="field">
-                <span>Deal size</span>
-                <input id="dealSizeInput" type="text" placeholder="e.g. $500K ARR" />
-              </label>
-            </div>
+Deal size
 
-            <div class="field-grid">
-              <label class="field">
-                <span>Product</span>
-                <select id="productInput">
-                  <option>ChatGPT Enterprise</option>
-                  <option>ChatGPT Edu</option>
-                  <option>API</option>
-                  <option>Codex</option>
-                  <option>Alpha / Beta</option>
-                  <option>Apps / Connectors</option>
-                  <option>Multiple products</option>
-                </select>
-              </label>
-              <label class="field">
-                <span>Audience</span>
-                <select id="audienceInput">
-                  <option>Customer email</option>
-                  <option>Internal Slack reply</option>
-                  <option>Both</option>
-                </select>
-              </label>
-            </div>
+Product
+                  ChatGPT Enterprise
+                  ChatGPT Edu
+                  API
+                  Codex
+                  Alpha / Beta
+                  Apps / Connectors
+                  Multiple products
+                
+Audience
+                  Customer email
+                  Internal Slack reply
+                  Both
+                
+Documents involved
 
-            <fieldset class="fieldset">
-              <legend>Documents involved</legend>
-              <div class="checkbox-grid">
-                <label><input type="checkbox" value="OSA" /> OSA / EA</label>
-                <label><input type="checkbox" value="DPA" /> DPA</label>
-                <label><input type="checkbox" value="BAA" /> BAA</label>
-                <label><input type="checkbox" value="NDA" /> NDA</label>
-                <label><input type="checkbox" value="OF" /> Order Form</label>
-                <label><input type="checkbox" value="ZDR" /> ZDR / MAM</label>
-                <label><input type="checkbox" value="Alpha" /> Alpha / Eval</label>
-                <label><input type="checkbox" value="COI" /> COI / vendor form</label>
-              </div>
-            </fieldset>
+OSA / EA
 
-            <label class="field">
-              <span>Links or internal notes</span>
-              <textarea id="notesInput" rows="4" placeholder="Ironclad, SFDC, launch deadline, existing agreement dates, org IDs, or prior approvals."></textarea>
-            </label>
+DPA
 
-            <div class="actions">
-              <button class="primary-button" id="generateButton" type="button">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="m5 12 5 5L20 7" />
-                </svg>
-                Generate response
-              </button>
-              <button class="secondary-button" id="sampleButton" type="button">Load sample</button>
-            </div>
-          </section>
+BAA
 
-          <section class="output-panel" aria-label="Generated answer">
-            <div class="panel-heading">
-              <div>
-                <h2>Answer</h2>
-                <p>Customer-ready language with legal caveats and routing.</p>
-              </div>
-              <button class="icon-button" id="copyButton" type="button" aria-label="Copy customer response" title="Copy customer response">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M8 8h10v12H8zM6 16H4V4h10v2" />
-                </svg>
-              </button>
-            </div>
+NDA
 
-            <div class="signal-row">
-              <div class="signal" id="topicSignal">
-                <span>Topic</span>
-                <strong>Waiting for question</strong>
-              </div>
-              <div class="signal" id="riskSignal">
-                <span>Review</span>
-                <strong>Not assessed</strong>
-              </div>
-            </div>
+Order Form
 
-            <article class="answer-card">
-              <div class="answer-header">
-                <h3>Customer-ready response</h3>
-                <span id="confidenceBadge" class="badge neutral">Draft</span>
-              </div>
-              <pre id="customerOutput">Paste a question and generate a response. The answer will appear here in a format GTM can paste into an email.</pre>
-            </article>
+ZDR / MAM
 
-            <article class="answer-card compact">
-              <h3>Internal note</h3>
-              <pre id="internalOutput">Internal caveats, source links, and escalation guidance will appear here.</pre>
-            </article>
+Alpha / Eval
 
-            <section class="topic-bank" aria-label="Detected topic library">
-              <h3>Supported Topics</h3>
-              <div class="chip-grid" id="topicChips"></div>
-            </section>
-          </section>
-        </div>
-      </section>
-    </main>
+COI / insurance
+Links or internal notes
 
-    <script src="./app.js"></script>
-  </body>
-</html>
+Generate response
+Load sample
+Answer
+Customer-ready language with legal caveats and routing.
+
+TOPIC
+Waiting for question
+REVIEW
+Not assessed
+Customer-ready response
+Draft
+Paste a question and generate a response. The answer will appear here in a format GTM can paste into an email.
+Internal note
+Internal caveats, source links, and escalation guidance will appear here.
+Supported Topics
